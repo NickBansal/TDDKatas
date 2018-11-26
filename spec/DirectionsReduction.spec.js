@@ -11,4 +11,19 @@ describe.only("Directions Reduction", () => {
     it('[NORTH, SOUTH] will return an empty array', () => {
         expect(DirectionsReduction(['NORTH', 'SOUTH'])).to.eql([])
     })
+    it('[WEST, EAST] will return an empty array', () => {
+        expect(DirectionsReduction(['WEST', 'EAST'])).to.eql([])
+    })
+    it('[WEST, EAST, NORTH, SOUTH] will return an empty array', () => {
+        expect(DirectionsReduction(['NORTH', 'SOUTH', 'EAST', 'WEST'])).to.eql([])
+    })
+    it('[WEST, EAST, WEST] will return [ WEST ]', () => {
+        expect(DirectionsReduction(['WEST', 'EAST', 'WEST'])).to.eql(['WEST'])
+    })
+    it('[NORTH, SOUTH, NORTH] will return NORTH', () => {
+        expect(DirectionsReduction(['NORTH', 'SOUTH', 'NORTH'])).to.eql(['NORTH'])
+    })
+    it('Expect top return WEST', () => {
+        expect(DirectionsReduction(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"])).to.eql(['WEST'])
+    })
 })
