@@ -2,7 +2,7 @@ const { expect } = require('chai')
 const DuplicateEncoder = require('../katas/DuplicateEncoder')
 
 describe('Duplicate Encoder', () => {
-    it('When passed in A, it returns A', () => {
+    it('When passed in A, it returns (', () => {
         expect(DuplicateEncoder('A')).to.equal('(')
     })
     it('When passed in a word with no duplicates, it returns a new string', () => {
