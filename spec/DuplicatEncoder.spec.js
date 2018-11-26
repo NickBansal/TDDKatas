@@ -14,5 +14,8 @@ describe('Duplicate Encoder', () => {
     it("Check to see if this works with spaces", () => {
         expect(DuplicateEncoder("(( @")).to.equal("))((")
     })
+    it("Recede should return ()()()", () => {
+        expect(DuplicateEncoder('Recede')).to.equal('()()()')
+    })
 })
 
