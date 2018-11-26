@@ -1,5 +1,8 @@
-const DuplicateEncoder = () => {
-    return 0
+const DuplicateEncoder = (string) => {
+    return string.split('').map(letter => {
+        let regex1 = RegExp(`\\${letter}` + `{2,}`)
+        return regex1.test(string) ? ')' : '('
+    }).join('')
 }
 
 
