@@ -7,11 +7,11 @@ const DirectionsReduction = (arr) => {
       (arr[i] === "WEST" && arr[i+1] === "EAST")) {
           arr.splice(i, 2);
           i--;
-      } else {
+        } else {
           i++;
-      }
+        }
     }
     return arr;
-  } 
+} 
 
 module.exports = DirectionsReduction

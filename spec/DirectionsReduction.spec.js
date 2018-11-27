@@ -1,7 +1,7 @@
 const { expect } = require('chai')
 const DirectionsReduction = require('../katas/DirectionsReduction')
 
-describe.only("Directions Reduction", () => {
+describe("Directions Reduction", () => {
     it('when given EAST, returns EAST', () => {
         expect(DirectionsReduction(['EAST'])).to.eql(['EAST'])
         expect(DirectionsReduction(['WEST'])).to.eql(['WEST'])
