@@ -11,7 +11,7 @@ l6= [4, -2, 3, 3, 4],
 l7= [0, 2, 0],
 l8= [5, 9, 13, -3];
 
-describe.only('Sum of Pairs', () => {
+describe('Sum of Pairs', () => {
     it('Given an array and a sum, returns an array with the two values', () => {
         expect(sum_pairs([1,2], 3)).to.eql([1, 2])
         expect(sum_pairs(l1, 8)).to.eql([1, 7])

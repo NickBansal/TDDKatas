@@ -1,4 +1,5 @@
 const sum_pairs = (array, sum) => {
+    let result = []
     if (array.length > 1) {
         for (let i = 1; i < array.length; i++) {
             if (array[0] + array[i] === sum) {
