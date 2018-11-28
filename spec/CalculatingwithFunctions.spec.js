@@ -18,15 +18,10 @@ describe.only('Calculating with Functions', () => {
         expect(eight()).to.equal(8)
         expect(nine()).to.equal(9)
     })
-    it('An Operand function returns that same operand', () => {
-        expect(plus()).to.equal('+')
-        expect(minus()).to.equal('-')
-        expect(times()).to.equal('*')
-        expect(dividedBy()).to.equal('/')
-    })
     it('Adding two numbers should return their sum', () => {
         expect(one(plus(two()))).to.equal(3)
         expect(three(plus(eight()))).to.equal(11)
+        expect(zero(plus(eight()))).to.equal(8)
     })
     it('Subtracting two numbers should return their sum', () => {
         expect(one(minus(two()))).to.equal(-1)

@@ -1,50 +1,43 @@
-function notEval(fn) {
-    return Math.floor(new Function('return ' + fn)());
+const expr = (number, operation) => {
+    return (!operation) ? number : operation(number)
 }
 
 const zero = (operand) => {
-    return operand ? notEval([0,...operand].join('')) : 0
+    return expr(0, operand)
 }
 const one = operand => {
-    return operand ? notEval([1,...operand].join('')) : 1
+    return expr(1, operand)
 }
 const two = (operand) => {
-    return operand ? notEval([2,...operand].join('')) : 2
+    return expr(2, operand)
 }
 const three = (operand) => {
-    return operand ? notEval([3,...operand].join('')) : 3
+    return expr(3, operand)
 }
 const four = (operand) => {
-    return operand ? notEval([4,...operand].join('')) : 4
+    return expr(4, operand)
 }
 const five = (operand) => {
-    return operand ? notEval([5,...operand].join('')) : 5
+    return expr(5, operand)
 }
 const six = (operand) => {
-    return operand ? notEval([6,...operand].join('')) : 6
+    return expr(6, operand)
 } 
 const seven = (operand) => {
-    return operand ? notEval([7,...operand].join('')) : 7
+    return expr(7, operand)
 } 
 const eight = (operand) => {
-    return operand ? notEval([8,...operand].join('')) : 8
+    return expr(8, operand)
 } 
 const nine = (operand) => {
-    return operand ? notEval([9,...operand].join('')) : 9
+    return expr(9, operand)
 } 
 
-const plus = (number) => {
-    return number ? ['+',number] : '+'
-}
-const minus = (number) => {
-    return number ? ['-', number] : '-'
-}
-const times = (number) => {
-    return number ? ['*', number] : '*'
-}
-const dividedBy = (number) => {
-    return number ? ['/', number] : '/'
-}
+const plus = a => b => b + a
+const minus = a => b => b - a;
+const times = a => b => b * a;
+const dividedBy = a => b => Math.floor(b / a)
+
 
 module.exports = { 
     zero, one, two, three, four, five, six, seven, eight, nine,
