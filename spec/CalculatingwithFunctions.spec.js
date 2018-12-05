@@ -5,7 +5,7 @@ const {
     plus, minus, times, dividedBy 
 } = require('../katas/CalculatingwithFunctions')
 
-describe.only('Calculating with Functions', () => {
+describe('Calculating with Functions', () => {
     it('A Number function returns that same number', () => {
         expect(zero()).to.equal(0)
         expect(one()).to.equal(1)
