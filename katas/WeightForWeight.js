@@ -12,7 +12,13 @@ const orderWeight = string => {
         lookup[item] = newString[index]
         resultLookup[item] ? resultLookup[item]++ : resultLookup[item] = 1
     })
-    const keysSorted = Object.keys(lookup).sort((a,b) => lookup[a] - lookup[b])
+    const keysSorted = Object.keys(lookup).sort((a,b) => {
+        if (lookup[a] === lookup[b] && Number(a[0]) !== Number(b[0])) {
+            return Number(a[0]) - Number(b[0])
+        } else if (lookup[a] === lookup[b] && Number(a[0]) === Number(b[0])) {
+            return Number(a) - Number(b)
+        } else return lookup[a] - lookup[b]
+    })
     const newResult = keysSorted.reduce((acc, item, index) => {
         acc += (`${item} `).repeat(resultLookup[item])
         return acc
@@ -20,10 +26,4 @@ const orderWeight = string => {
     return newResult
 }
 
-orderWeight('11 11 2000 10003 22 123 1234000 44444444 9999')
-
 module.exports = orderWeight
-
-
-// '11 11 2000 10003 22 123 1234000 44444444 9999', 
-// '11 11 2000 22 10003 123 1234000 44444444 9999'

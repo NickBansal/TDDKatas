@@ -14,6 +14,11 @@ describe.only('Weight for weight kata', () => {
     })
     it('If two numbers have the same value it will sort them by the first number', () => {
         let value = '11 11 2000 10003 22 123 1234000 44444444 9999'
+        let result = '2000 11 11 10003 22 123 1234000 44444444 9999'
+        expect(orderWeight(value)).to.equal(value)
+    })
+    it('If two numbers have the same value it will sort them by the first number', () => {
+        let value = '1 2 200 4 4 6 6 7 7 18 27 72 81 9 91 425 31064 7920 67407 96488 34608557 71899703'
         expect(orderWeight(value)).to.equal(value)
     })
 })
