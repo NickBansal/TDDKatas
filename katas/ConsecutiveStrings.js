@@ -1,23 +1,14 @@
 const longestConsec = (array, k) => {
     const n = array.length
+    let result = []
     if (n === 0 || n < k) return ""
-    return array.reduce((acc, value, index) => {
-        if (index === 0) {
-            for (let i=0; i<k; i++) {
-                acc.push(array[index + i])
-            }
-        }
-        if (index > 0 && index <= array.length - k) {
-            let checker = []
-            for (let i=0; i<k; i++) {
-                checker.push(array[index + i])
-            }
-            if (checker.join('').length > acc.join('').length) {
-                acc = checker
-            }
-        }
-        return acc
-    }, []).join('')
+    for (let i=0; i<n; i++) {
+        let newResult = array.slice(i, i+k)
+        if (newResult.join('').length > result.join('').length) {
+            result = newResult
+        } 
+    }
+    return result.join('')
 }
 
 module.exports = longestConsec
