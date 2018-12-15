@@ -1,7 +1,7 @@
 const { expect } = require('chai')
 const longestConsec = require('../katas/ConsecutiveStrings')
 
-describe.only('Consecutive Strings', () => {
+describe('Consecutive Strings', () => {
     it('If given an array with 0 length return empty string', () => {
         expect(longestConsec([], 0)).to.equal("")
     })
