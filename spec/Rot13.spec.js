@@ -1,7 +1,7 @@
 const rot13 = require('../katas/Rot13')
 const { expect } = require('chai')
 
-describe.only('Rot13', () => {
+describe('Rot13', () => {
     it('When given a single lowercase character it returns a letter 13 letters away', () => {
         expect(rot13('a')).to.equal('n') 
         expect(rot13('C')).to.equal('P')
