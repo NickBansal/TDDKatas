@@ -1,7 +1,7 @@
 const { car, Vehicle } = require('../katas/BuildaCar')
 const { expect } = require('chai')
 
-describe.only('Build a Car', () => {
+describe('Build a Car', () => {
     it('Creates a new instance of the class', () => {
         expect(new Vehicle()).to.be.an.instanceof(Vehicle);
     })
@@ -22,7 +22,7 @@ describe.only('Build a Car', () => {
         expect(car(16).chassis.component.layer3).to.equal("-o-o-o-----o-o-'")
         expect(car(17).chassis.component.layer3).to.equal("-o-o-o------o-o-'")
     })
-    it.only('Returns the correct amount of doors and spaces', () => {
+    it('Returns the correct amount of doors and spaces', () => {
         expect(car(7, 1).body.component.layer2).to.equal("|  []\\")
         expect(car(7, 2).body.component.layer2).to.equal("|[][]\\")
     })
