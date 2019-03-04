@@ -1,47 +1,70 @@
 class MarsRover {
-    constructor(location = [0, 0], direction = 'N') {
+    constructor(location = [0, 0], direction = 'N', grid = [100, 100], obstacles = []) {
         this.location = location
         this.direction = direction
         this.commandList = []
+        this.grid = grid
+        this.obstacles = obstacles
+        this.memory = [[0, 0]]
+        this.status = 'OK'
     }
 
-    move(list) {
-        const forwards = list.filter(item => item === 'f').length
-        const backwards = list.filter(item => item === 'b').length
+    move(x) {
+        const moveMents = x === 'f' ? 1 : -1
         if (this.direction === 'N') {
-            this.location[1] -= forwards
-            this.location[1] += backwards
+            this.location[1] -= moveMents
         }
         if (this.direction === 'S') {
-            this.location[1] += forwards
-            this.location[1] -= backwards
+            this.location[1] += moveMents
         }
         if (this.direction === 'W') {
-            this.location[0] -= forwards
-            this.location[0] += backwards
+            this.location[0] -= moveMents
         }
         if (this.direction === 'E') {
-            this.location[0] += forwards
-            this.location[0] -= backwards
+            this.location[0] += moveMents
+        }
+        this.memory.push([...this.location])
+    }
+
+    gridLock() {
+        if (this.location[0] >= this.grid[0]) {
+            this.location[0] -= this.grid[0]
+        }
+        if (this.location[1] >= this.grid[1]) {
+            this.location[1] -= this.grid[1]
+        }
+        if (this.location[0] < 0) {
+            this.location[0] += this.grid[0]
+        }
+        if (this.location[1] < 0) {
+            this.location[1] += this.grid[1]
         }
     }
 
-    rotate(list) {
+    rotate(x) {
         const lookupLeft = { 'E': 'N', 'N': 'W', 'W': 'S', 'S': 'E' }
         const lookupRight = { 'E': 'S', 'S': 'W', 'W': 'N', 'N': 'E' }
-        if (list[0] === 'l') {
-            this.direction = lookupLeft[this.direction]
-        }
-        if (list[0] === 'r') {
-            this.direction = lookupRight[this.direction]
-        }
+        this.direction = x === 'l' ? lookupLeft[this.direction] : lookupRight[this.direction]
     }
-
 
     commands(arr) {
         if (arr) this.commandList = arr
-        this.move(this.commandList)
-        this.rotate(this.commandList)
+        this.commandList.forEach(item => {
+            if (!this.obstacles.some(item => item[0] === this.location[0] && item[1] === this.location[1])) {
+                if (item === 'f' || item === 'b') {
+                    this.move(item)
+                }
+                if (item === 'l' || item === 'r') {
+                    this.rotate(item)
+                }
+            }
+        })
+        if (this.obstacles.some(item => item[0] === this.location[0] && item[1] === this.location[1])) {
+            this.location = (this.memory[this.memory.length - 2])
+            this.status = 'obstacle'
+        }
+        this.gridLock()
+
         return this.commandList
     }
 }

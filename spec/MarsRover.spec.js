@@ -95,71 +95,83 @@ describe.only('Mars Rover', function () {
         });
     });
 
-    // describe('Implement wrapping from one edge of the grid to another (planets are spheres after all)', function () {
-    //     it('should assign grid size', function () {
-    //         var mr = new MarsRover([12, 21], 'N', [12, 33]);
-    //         expect(mr.grid).eql([12, 33]);
-    //     });
-    //     it('should use default value 100x100 when grid is not assigned', function () {
-    //         var mr = new MarsRover([12, 21], 'N');
-    //         expect(mr.grid).eql([100, 100]);
-    //     });
-    //     it('should return X to 0 when grid is passed', function () {
-    //         var mr = new MarsRover([9, 9], 'E', [10, 10]);
-    //         mr.commands(['f']);
-    //         expect(mr.location).eql([0, 9]);
-    //     });
-    // it('should return Y to 0 when grid is passed', function () {
-    //     var mr = new MarsRover([9, 9], 'S', [10, 10]);
-    //     mr.commands(['f']);
-    //     expect(mr.location).toEqual([9, 0]);
-    // });
-    // it('should return X to grid end when grid is passed from west', function () {
-    //     var mr = new MarsRover([0, 9], 'E', [10, 10]);
-    //     mr.commands(['b']);
-    //     expect(mr.location).toEqual([9, 9]);
-    // });
-    // it('should return Y to grid end when grid is passed from north', function () {
-    //     var mr = new MarsRover([9, 0], 'N', [10, 10]);
-    //     mr.commands(['f']);
-    //     expect(mr.location).toEqual([9, 9]);
-    // });
-    // });
+    describe('Implement wrapping from one edge of the grid to another (planets are spheres after all)', function () {
+        it('should assign grid size', function () {
+            var mr = new MarsRover([12, 21], 'N', [12, 33]);
+            expect(mr.grid).eql([12, 33]);
+        });
+        it('should use default value 100x100 when grid is not assigned', function () {
+            var mr = new MarsRover([12, 21], 'N');
+            expect(mr.grid).eql([100, 100]);
+        });
+        it('should return X to 0 when grid is passed', function () {
+            var mr = new MarsRover([9, 9], 'E', [10, 10]);
+            mr.commands(['f']);
+            expect(mr.location).eql([0, 9]);
+        });
+        it('should return Y to 0 when grid is passed', function () {
+            var mr = new MarsRover([9, 9], 'S', [10, 10]);
+            mr.commands(['f']);
+            expect(mr.location).eql([9, 0]);
+        });
+        it('should return X to grid end when grid is passed from west', function () {
+            var mr = new MarsRover([0, 9], 'E', [10, 10]);
+            mr.commands(['b']);
+            expect(mr.location).eql([9, 9]);
+        });
+        it('should return Y to grid end when grid is passed from north', function () {
+            var mr = new MarsRover([9, 0], 'N', [10, 10]);
+            mr.commands(['f']);
+            expect(mr.location).eql([9, 9]);
+        });
+        it('should return Y to grid end when grid is passed from north', function () {
+            var mr = new MarsRover([9, 0], 'N', [10, 10]);
+            mr.commands(['f', 'f', 'f']);
+            expect(mr.location).eql([9, 7]);
+        });
+    });
 
-    // describe('Implement obstacle detection before each move to a new square.'
-    //     + ' If a given sequence of commands encounters an obstacle,'
-    //     + ' the rover moves up to the last possible point and reports the obstacle', function () {
-    //         it('should assign obstacles', function () {
-    //             var mr = new MarsRover([12, 21], 'N', [12, 33], [[5, 5], [3, 7]]);
-    //             expect(mr.obstacles).toEqual([[5, 5], [3, 7]]);
-    //         });
-    //         it('should use empty array when obstacles are not assigned', function () {
-    //             var mr = new MarsRover([12, 21], 'N');
-    //             expect(mr.obstacles.length).toEqual(0);
-    //         });
-    //         it('should not move to the obstacle', function () {
-    //             var mr = new MarsRover([0, 0], 'E');
-    //             mr.obstacles = [[5, 1], [3, 0]];
-    //             mr.commands(['f', 'f', 'f']);
-    //             expect(mr.location).toEqual([2, 0]);
-    //         });
-    //         it('should stop when obstacle is detected', function () {
-    //             var mr = new MarsRover([0, 0], 'E');
-    //             mr.obstacles = [[3, 0]];
-    //             mr.commands(['f', 'f', 'f', 'l', 'f']);
-    //             expect(mr.location).toEqual([2, 0]);
-    //         });
-    //         it('should set status to obstacle when one is detected', function () {
-    //             var mr = new MarsRover([0, 0], 'E');
-    //             mr.obstacles = [[1, 0]];
-    //             mr.commands(['f']);
-    //             expect(mr.status).toEqual('obstacle');
-    //         });
-    //         it('should leave status to OK when obstacle is NOT detected', function () {
-    //             var mr = new MarsRover([0, 0], 'E');
-    //             mr.commands(['f']);
-    //             expect(mr.status).toEqual('OK');
-    //         });
-    //     });
+    describe.only('Implement obstacle detection before each move to a new square.'
+        + ' If a given sequence of commands encounters an obstacle,'
+        + ' the rover moves up to the last possible point and reports the obstacle', function () {
+            it('should assign obstacles', function () {
+                var mr = new MarsRover([12, 21], 'N', [12, 33], [[5, 5], [3, 7]]);
+                expect(mr.obstacles).eql([[5, 5], [3, 7]]);
+            });
+            it('should use empty array when obstacles are not assigned', function () {
+                var mr = new MarsRover([12, 21], 'N');
+                expect(mr.obstacles.length).equal(0);
+            });
+            it('should not move to the obstacle', function () {
+                var mr = new MarsRover([0, 0], 'E');
+                mr.obstacles = [[5, 1], [3, 0]];
+                mr.commands(['f', 'f', 'f']);
+                expect(mr.location).eql([2, 0]);
+            });
+            it('should stop when obstacle is detected', function () {
+                var mr = new MarsRover([0, 0], 'E');
+                mr.obstacles = [[3, 0]];
+                mr.commands(['f', 'f', 'f', 'l', 'f']);
+                expect(mr.location).eql([2, 0]);
+            });
+            it('should stop when obstacle is detected', function () {
+                var mr = new MarsRover([0, 0], 'E');
+                mr.obstacles = [[3, 0]];
+                mr.commands(['f', 'f', 'f', 'l', 'f', 'f']);
+                expect(mr.location).eql([2, 0]);
+            });
+            it('should set status to obstacle when one is detected', function () {
+                var mr = new MarsRover([0, 0], 'E');
+                mr.obstacles = [[1, 0]];
+                mr.commands(['f']);
+                expect(mr.status).eql('obstacle');
+            });
+            it('should leave status to OK when obstacle is NOT detected', function () {
+                var mr = new MarsRover([0, 0], 'E');
+                mr.commands(['f']);
+                expect(mr.status).equal('OK');
+            });
+        });
+
 
 });
