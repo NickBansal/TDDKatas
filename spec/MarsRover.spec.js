@@ -131,7 +131,15 @@ describe.only('Mars Rover', function () {
         });
     });
 
-    describe.only('Implement obstacle detection before each move to a new square.'
+    describe('Follows the journey of the Mars Rover through all directions', () => {
+        it('Should bring a new location', () => {
+            var mr = new MarsRover([12, 21]);
+            mr.commands(['f', 'f', 'f', 'b', 'l', 'f', 'l']);
+            expect(mr.location).eql([11, 19]);
+        })
+    })
+
+    describe('Implement obstacle detection before each move to a new square.'
         + ' If a given sequence of commands encounters an obstacle,'
         + ' the rover moves up to the last possible point and reports the obstacle', () => {
             it('should assign obstacles', () => {
@@ -160,23 +168,22 @@ describe.only('Mars Rover', function () {
                 mr.commands(['f', 'f', 'f', 'l', 'f', 'f', 'f', 'f']);
                 expect(mr.location).eql([2, 0]);
             });
-            it('should set status to obstacle when one is detected', () => {
-                var mr = new MarsRover([0, 0], 'E');
-                mr.obstacles = [[1, 0]];
-                mr.commands(['f']);
+            it('should stop when obstacle is detected', () => {
+                var mr = new MarsRover([10, 10], 'E');
+                mr.obstacles = [[11, 10]];
+                mr.commands(['f', 'f', 'b']);
                 expect(mr.status).eql('obstacle');
+            });
+            it('should set status to obstacle when one is detected', () => {
+                var mr = new MarsRover([10, 10], 'E');
+                mr.obstacles = [[11, 10]];
+                mr.commands(['f']);
+                expect(mr.location).eql([10, 10]);
             });
             it('should leave status to OK when obstacle is NOT detected', () => {
                 var mr = new MarsRover([0, 0], 'E');
                 mr.commands(['f']);
                 expect(mr.status).equal('OK');
             });
-            it.only('should leave status to OK when obstacle is NOT detected', () => {
-                var mr = new MarsRover([0, 0], 'E');
-                mr.commands(['f']);
-                expect(mr.status).equal('OK');
-            });
         });
-
-
 });

@@ -5,7 +5,7 @@ class MarsRover {
         this.commandList = []
         this.grid = grid
         this.obstacles = obstacles
-        this.memory = [[0, 0]]
+        this.memory = [[...this.location]]
         this.status = 'OK'
     }
 
@@ -60,7 +60,7 @@ class MarsRover {
             }
         })
         if (this.obstacles.some(item => item[0] === this.location[0] && item[1] === this.location[1])) {
-            this.location = (this.memory[this.memory.length - 2])
+            this.location = this.memory[this.memory.length - 2]
             this.status = 'obstacle'
         }
         this.gridLock()
