@@ -174,6 +174,12 @@ describe.only('Mars Rover', function () {
                 mr.commands(['f', 'f', 'b']);
                 expect(mr.status).eql('obstacle');
             });
+            it('should stop when obstacle is detected', () => {
+                var mr = new MarsRover([2, 3], 'S');
+                mr.obstacles = [[2, 4]];
+                mr.commands(['f', 'f', 'f']);
+                expect(mr.location).eql([2, 3]);
+            });
             it('should set status to obstacle when one is detected', () => {
                 var mr = new MarsRover([10, 10], 'E');
                 mr.obstacles = [[11, 10]];

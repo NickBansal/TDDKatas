@@ -5,7 +5,7 @@ class MarsRover {
         this.commandList = []
         this.grid = grid
         this.obstacles = obstacles
-        this.memory = [[...this.location]]
+        this.memory = [[...location]]
         this.status = 'OK'
     }
 
