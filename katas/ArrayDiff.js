@@ -1,5 +1,4 @@
-const ArrayDiff = (a, b) => {
-    return a.filter(number => !b.some(item => item === number))
-}
+const ArrayDiff = (a, b) => a.filter(number => !b.some(item => item === number));
 
 module.exports = ArrayDiff
+;
